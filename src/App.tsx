@@ -1,26 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getBrands } from "./store/mainSlice";
+import { InitialState } from "./store/types";
+import { TreeView } from "./components/TreeView/TreeView";
+import "./App.css";
+import { createTreeDict } from "./modules/createTreeDict";
+import { NewBrandForm } from "./components/NewBrandForm/NewBrandForm";
 
-function App() {
+export const App = () => {
+  const d = useDispatch();
+  const { treeItems, loading, error } = useSelector(
+    (state: InitialState) => state
+  );
+  const loadingClassName = loading ? "loading" : "";
+  const treeDict = createTreeDict(treeItems);
+
+  React.useEffect(() => {
+    d(getBrands());
+  }, [d]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={loadingClassName}>
+      {error && <p>{error}</p>}
+      <NewBrandForm/>
+      <TreeView treeDict={treeDict} />
     </div>
   );
-}
-
-export default App;
+};
