@@ -1,15 +1,15 @@
-import React from "react";
 import { filterByMain } from "../../modules/filterByMain";
 import { sortByTitles } from "../../modules/sortByTitles";
 import { TreeItems } from "../../store/types";
 
 interface Props {
   items: TreeItems;
+  reverseSort: boolean;
 }
 
-export const TreeShortList = ({ items }: Props) => {
+export const TreeShortList = ({ items, reverseSort }: Props) => {
   const filteredByMain = filterByMain(items);
-  const sortedByTitles = sortByTitles(filteredByMain);
+  const sortedByTitles = sortByTitles(filteredByMain, reverseSort);
 
   const allItemsDisplayed = items.length === sortedByTitles.length;
 

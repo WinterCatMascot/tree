@@ -38,7 +38,17 @@ export const updateBrandById = createAsyncThunk(
 const mainSlice = createSlice({
   name: "main",
   initialState: initialState,
-  reducers: {},
+  reducers: {
+    changeSortOrder(state) {
+      state.reverseSort = !state.reverseSort;
+    },
+    changeSearchRegister(state) {
+      state.search.registerOn = !state.search.registerOn;
+    },
+    changeSearchText(state, action) {
+      state.search.text = action.payload;
+    },
+  },
   extraReducers: {
     [getBrands.pending.type]: (state) => {
       state.loading = true;
@@ -97,5 +107,6 @@ const mainSlice = createSlice({
   },
 });
 
-// export const {} = mainSlice.actions;
+export const { changeSortOrder, changeSearchRegister, changeSearchText } =
+  mainSlice.actions;
 export const mainReducer = mainSlice.reducer;

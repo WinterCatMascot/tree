@@ -6,9 +6,10 @@ import { TreeShortList } from "./TreeShortList";
 interface Props {
   title: string;
   items: TreeItems;
+  reverseSort: boolean;
 }
 
-export const TreeViewRoot = ({ title, items }: Props) => {
+export const TreeViewRoot = ({ title, items, reverseSort }: Props) => {
   const itemsLength = items.length;
 
   const [open, setOpen] = React.useState(false);
@@ -18,7 +19,7 @@ export const TreeViewRoot = ({ title, items }: Props) => {
   return (
     <div>
       <p onClick={changeOpen}>{`${title} (${itemsLength}) ${openSymbol}`}</p>
-      {open ? <TreeFullList items={items} /> : <TreeShortList items={items} />}
+      {open ? <TreeFullList items={items} reverseSort={reverseSort} /> : <TreeShortList items={items} reverseSort={reverseSort} />}
     </div>
   );
 };

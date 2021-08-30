@@ -29,6 +29,7 @@ export const api = {
     const res = await axios.post(`${MAIN_URL}/brands`, data);
     return res.data;
   },
+  // закоммментировано за ненадобностью
   // async getBrandById(id: Id) {
   //   const res = await axios.get(`${MAIN_URL}/brand/${id}`);
   //   return res.data;

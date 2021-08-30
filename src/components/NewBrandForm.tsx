@@ -1,7 +1,7 @@
 import React, { ChangeEvent } from "react";
 import { useDispatch } from "react-redux";
-import { PostBrand } from "../../api/api";
-import { postBrand } from "../../store/mainSlice";
+import { PostBrand } from "../api/api";
+import { postBrand } from "../store/mainSlice";
 
 const initialFormState: PostBrand = { title: "", main: true };
 
@@ -27,6 +27,7 @@ export const NewBrandForm = () => {
 
   return (
     <div>
+      Add new Brand:
       <label>
         Title
         <input
@@ -36,14 +37,14 @@ export const NewBrandForm = () => {
           onChange={handleChange}
         />
       </label>
-
       <label>
         Main
         <input
           name="main"
           type="checkbox"
           checked={form.main}
-          onChange={handleChange}
+          // закоммментировано, потому что успешное добавление происходит только с main: true
+          // onChange={handleChange}
         />
       </label>
       <button onClick={submit}>Add</button>

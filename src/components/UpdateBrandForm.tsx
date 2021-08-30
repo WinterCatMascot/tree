@@ -1,6 +1,6 @@
 import React, { ChangeEvent } from "react";
 import { useDispatch } from "react-redux";
-import { updateBrandById } from "../../store/mainSlice";
+import { updateBrandById } from "../store/mainSlice";
 
 interface Props {
   initialForm: { title: string; main: boolean };

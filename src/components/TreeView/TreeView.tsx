@@ -3,16 +3,23 @@ import { TreeViewRoot } from "./TreeViewRoot";
 
 interface Props {
   treeDict: TreeDict;
+  reverseSort: boolean;
 }
 
-export const TreeView = ({ treeDict }: Props) => {
+export const TreeView = ({ treeDict, reverseSort }: Props) => {
+  const letters = Object.keys(treeDict).sort();
+  const sortedLetters = reverseSort ? letters.reverse() : letters;
+
   return (
     <div>
-      {Object.keys(treeDict)
-        .sort()
-        .map((key) => (
-          <TreeViewRoot title={key} items={treeDict[key]} key={key} />
-        ))}
+      {sortedLetters.map((key) => (
+        <TreeViewRoot
+          title={key}
+          items={treeDict[key]}
+          reverseSort={reverseSort}
+          key={key}
+        />
+      ))}
     </div>
   );
 };
